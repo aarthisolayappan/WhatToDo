@@ -1,0 +1,22 @@
+{
+  "manifest_version": 3,
+  "name": "Text Highlight Popup",
+  "version": "1.0",
+  "description": "Shows a popup when text is highlighted.",
+  "permissions": [
+    "activeTab"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["whattodo.js"]
+    }
+  ],
+  "action": {
+    "default_popup": "whattodo.html",
+    "default_icon": "hello_extensions.png"
+  }
+}

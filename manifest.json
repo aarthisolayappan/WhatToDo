@@ -1,22 +1,26 @@
 {
-  "manifest_version": 3,
-  "name": "Text Highlight Popup",
+  "name": "Task Manager",
   "version": "1.0",
-  "description": "Shows a popup when text is highlighted.",
+  "description": "Manage tasks directly on the webpage",
+  "manifest_version": 2,
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "tabs",
+    "<all_urls>"
   ],
   "background": {
-    "service_worker": "background.js"
+    "scripts": ["background.js"],
+    "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["whattodo.js"]
+      "js": ["content.js"]
     }
   ],
-  "action": {
-    "default_popup": "whattodo.html",
-    "default_icon": "hello_extensions.png"
+  "icons": {
+    "16": "hello_extensions.png",
+    "48": "hello_extensions.png",
+    "128": "hello_extensions.png"
   }
 }

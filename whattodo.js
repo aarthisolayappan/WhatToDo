@@ -13,7 +13,37 @@
                 event.preventDefault(); 
             };
         });
+
+        loadTabs();
     });
+
+    
+
+    function loadTabs() {
+        chrome.tabs.query({}, function(tabs) {
+            const tabsListContainer = document.getElementById("tabsList");
+            tabsListContainer.innerHTML = '';  // Clear previous icons
+    
+            tabs.forEach(tab => {
+                console.log("Tab FavIcon URL:", tab.favIconUrl);  // Log the favIconUrl
+                
+                // Create tab icon for each open tab
+                const tabIcon = document.createElement('img');
+                if (tab.favIconUrl) {
+                    tabIcon.src = tab.favIconUrl;
+                } else {
+                    tabIcon.src = 'hello_extensions.png';  // Fallback if no favicon
+                }
+                tabIcon.alt = tab.title;
+                tabIcon.title = tab.title;
+                tabIcon.classList.add('tab-icon');
+                
+                // Append tab icon to the list
+                tabsListContainer.appendChild(tabIcon);
+            });
+        });
+    }
+    
 
         // first popup
     function togglePopUp(){
@@ -69,6 +99,7 @@
         var task = {
             name: taskName,
             deadline: formattedDeadline,
+            //completed is false
         };
 
         tasks.push(task);
@@ -95,6 +126,7 @@
         var task = {
             name: newTaskName,
             deadline: formattedDeadline,
+            // completed is false
         };
 
         tasks.push(task);
@@ -123,6 +155,14 @@
     
         taskCircle.addEventListener('click', function() {
             taskCircle.classList.toggle('filled');
+            // task.completed=true
+            // render tasks function
+            // clear the items inside the task container
+            // go through all the tasks and add the stuff thats not completed
+            // add event listener for clicking it
+            // do the same for completed
+            // clear out completed and re add
+            // false to undo it
         });
     
         let taskDetails = document.createElement('span');
@@ -138,6 +178,9 @@
         taskAddedPopUp.style.display = "block";
     };
 
+
+    //delete task function
+    
 
     // show all tasks in the second popup when the See All Tasks button is clicked
         // first pop up should be hidden when clicked on this button
@@ -160,6 +203,9 @@
     //questions to ask:
         // how to make the entered info editable on the second pop up
         // how to include the 'completed' section of the task list with undo function
-        // how to edit the date in the second pop up
         // how to activate the popup only when dragging text 
         // when pop up activated in chrome, not able to see anything else except the plus and minus sign
+
+
+
+        //chrome get all open tabs

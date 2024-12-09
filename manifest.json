@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "web_accessible_resources": [
     {
-      "resources": ["WhatToDo/hello_extensions.png"],
+      "resources": ["WhatToDo/whattodo.png"],
       "matches": ["<all_urls>"]
     }
   ],
@@ -23,8 +23,8 @@
     }
   ],
   "icons": {
-    "16": "hello_extensions.png",
-    "48": "hello_extensions.png",
-    "128": "hello_extensions.png"
+    "16": "whattodo.png",
+    "48": "whattodo.png",
+    "128": "whattodo.png"
   }
 }

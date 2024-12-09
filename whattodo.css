@@ -1,230 +1,126 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    width: 800px;
-    height: 600px;
-}
-
-#tabsList {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-}
-
-.tab-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: transform 0.2s ease-in-out;
-}
-
-.tab-icon:hover {
-    transform: scale(1.1);
-}
-
-.togglePopUp {
-    background-color: #ffeb3b;  
-    color: black;               
-    font-size: 14px;            
-    padding: 6px 12px;         
-    border: none;              
-    border-radius: 50px;         
-    cursor: pointer;           
-    position: relative;
-}
-
-.togglePopUp .addTasktext {
-    display: none;
+#toggleButton {
     position: absolute;
-    width: 70px;
-    background-color: rgb(239, 239, 239);
+    display: none;  /* Initially hidden */
+    background-color: yellow;
     color: black;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-    font-size: 12px;
-    top: -30px; 
-    left: 50%; 
-    transform: translateX(-50%);
-    white-space: nowrap;
-}
-
-.togglePopUp:hover .addTasktext {
-    display: block; 
-}
-
-/* Popup (Form) */
-.PopUp {
-    display: none; 
-    position: absolute;
-    z-index: 1; 
-    border-radius: 12px; 
-    background-color: #fff9c7; 
-    padding: 16px;
-    width: 300px; 
-    border: 1px solid #e4c82b; 
-}
-
-/* form Styles */
-.form-section {
-    margin-bottom: 10px;
-}
-
-.form-section label {
-    font-size: 15px;
-    display: block;
-    margin-bottom: 5px;
-}
-
-.form-section input,
-.form-section textarea {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
-
-/* submit Button */
-button {
-    color: #787878;
-    background-color: transparent;
-    border: 2px;
-    border-style: solid;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top:4px;
-    margin-bottom: -4px;
-    margin-right: 20px;
-}
-
-button:hover {
-    color: #121111;
-    font-style: italic;
-}
-
-/* second Popup */
-.taskAddedPopUp {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background-color: #fff9c7; 
-    border: 1px solid #e4c82b;     
-    padding: 20px;
-    border-radius: 10px;
-    width: 300px;
-    display: none;
-    z-index: 1000;
-    cursor: move;
-    
-}
-
-.task-container {
-    border-radius: 12px;
-    width:100%; 
-}
-
-.task-header {
-    background-color: #f4e05f; 
-    color: black;
-    border-radius: 10px;
-    height: 40px;
-    padding: 1%;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.task-item {
-    display: flex; 
-    align-items: center; 
-    margin-bottom: 15px; 
-}
-
-.task-circle {
-    width: 16px;
-    height: 16px;
-    border: 1px solid black; 
-    border-radius: 50%; 
-    margin-right: 10px; 
-    cursor: pointer;
-    display: inline-block;
-    transition: background-color 0.3s ease; 
-}
-
-.task-circle.filled {
-    background-color: green;
-}
-
-.task-details {
-    font-size: 15px;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    border: 1px solid #e4c82b;
-    color: black;
-}
-
-.completed-circle-container {
-    position: absolute;
-    align-items: center;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    margin-left: 80%;
-}
-
-.completed-circle {
-    width: 20px;
-    height: 20px;
-    background-color: green;
     border-radius: 50%;
-    margin-right: 10px;
+    border-style: none;
+    font-size: 20px;
+    padding-right: 7px;
+    padding-left: 7px;
     cursor: pointer;
+    z-index: 10000;  /* Ensure it appears on top */
 }
+  
 
-
-/* New task input in the second popup (greyed out by default) */
-#newTaskNameInPopup {
-    background-color: #f0f0f0; /* Light grey background */
-    color: #787878; /* Grey text color */
-    border: 1px solid #ccc; /* Standard border */
-    padding: 8px;
-    font-size: 14px;
-    width: 100%;
-    margin-top: 10px;
-    border-radius: 4px;
-    cursor: text; /* Shows as disabled */
-}
-
-/* When input is active (not disabled) */
-#newTaskNameInPopup:enabled {
+#popUp {
+    position: absolute;
+    background: lightgray;
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
     color: black;
+    z-index: 10001;  /* Ensure it appears on top of other elements */
+    display: none;
 }
 
 
-
-/* Submit Button Styling (greyed out) */
-#submitNewTaskInPopup {
-    color: #787878;
-    background-color: transparent;
-    border: 2px solid #ccc;
-    font-size: 15px;
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 5px;
+    background-color: #FAE559;
+    color: black;
+    border-radius: 5px;
+    font-size: 13px;
     cursor: pointer;
-    margin-top: 10px;
-    opacity: 0.5; /* Lower opacity to indicate it's greyed out */
 }
 
-#submitNewTaskInPopup:disabled {
-    cursor: not-allowed;
-    opacity: 0.3;
+#addTasks, #seeAllTasks{
+    position: relative;
+    margin-bottom: 5px;
+    margin-top: 16px;
+    padding: 5px 5px;
+    background-color: #FAE559;
+    color: black;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+#addTasks{
+    margin-left: 2px;
+}
+
+#seeAllTasks{
+    margin-left: 10px;
+}
+
+
+#taskAddedPopUp {
+    position: fixed;
+    background: lightgray;
+    width: 250px;
+    height: 400px;
+    padding: 10px;
+    border-radius: 5px;
+    color: black;
+    top: 25px;
+    right: 25px;
+    display: none;
+    overflow-y: auto;
+    z-index: 10002;
+}
+
+  
+.tabIcon {
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    padding-right: 7px;
+    padding-top: 7px;
+}
+  
+ 
+#completedButton {
+    padding: 5px 5px;
+    font-size: 13px;
+    background-color: #4CAF50;
+    color: white;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+
+#removeButton {
+    padding: 5px 5px;
+    position: relative;
+    font-size: 13px;
+    background-color: #FF6347;
+    color: black;
+    border: solid;
+    border-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+  
+.task {
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+  
+
+p {
+    margin: 0;
 }
